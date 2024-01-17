@@ -1,0 +1,61 @@
+#cacao-application {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#app-tab-container {
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--header-tab-not-selected);
+}
+
+#app-body {
+  flex-grow: 1;
+}
+
+#cacaoWindow {
+  height: 100%;
+  width: 100%;
+
+  overflow: hidden;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: var(--canvas-background);
+}
+
+.blurred {
+  filter: blur(5px);
+}
+
+.djs-element.selected .djs-outline {
+  visibility: visible;
+  stroke: var(--canvas-select-stroke);
+
+  rx: 10px;
+  ry: 10px;
+}
+
+.djs-selection-outline {
+  stroke: var(--canvas-select-stroke);
+
+  rx: 10px;
+  ry: 10px;
+}
+
+.djs-multi-select .djs-element.selected .djs-outline {
+  visibility: visible;
+  stroke: var(--canvas-select-fill);
+
+  rx: 10px;
+  ry: 10px;
+}

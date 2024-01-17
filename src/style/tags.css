@@ -1,0 +1,90 @@
+.tlp-icon {
+  height: 20px;
+  width: 20px;
+  background-color: var(--header-button-background);
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.tlp-red {
+  background: url('../assets/tlp/TLP-RED.png');
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+}
+
+.tlp-amber-strict {
+  background: url('../assets/tlp/TLP-AMBER.png');
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+}
+
+.tlp-amber {
+  background: url('../assets/tlp/TLP-AMBER.png');
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+}
+
+.tlp-green {
+  background: url('../assets/tlp/TLP-GREEN.png');
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+}
+
+.tlp-clear {
+  background: url('../assets/tlp/TLP-CLEAR.png');
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+}
+
+.tag {
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 700;
+}
+
+.tlp-red-tag {
+  border: 1px solid #ff2b2b;
+  color: #ff2b2b;
+}
+
+.tlp-amber-tag {
+  border: 1px solid #ffc000;
+  color: #ffc000;
+}
+
+.tlp-amber-strict-tag {
+  border: 1px solid #ffc000;
+  color: #ffc000;
+}
+
+.tlp-green-tag {
+  border: 1px solid #33f000;
+  color: #33ff00;
+}
+
+.tlp-clear-tag {
+  border: 1px solid white;
+  color: white;
+}
+
+.revoked-tag {
+  color: #dc4848;
+  border: 1px solid #dc4848;
+}
+
+.cacao-spec-version {
+  --color: rgb(218 109 233);
+  color: var(--color);
+  border: 1px solid var(--color);
+}

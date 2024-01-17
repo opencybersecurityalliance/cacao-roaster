@@ -1,0 +1,42 @@
+{
+  "$id": "https://raw.githubusercontent.com/cyentific-rni/cacao-coordinates-extension/main/schemas/connection.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "connection",
+  "description": "A Connection defines the outgoing relation/path of a visualized CACAO object. A connection comprises a list of points (expressed as coordinates) that are connected by lines. A CACAO object may have multiple outgoing connections, each one of them represented by a Connection object. A connection should have, at a minimum, two x and y values to represent a straight line (point to point).",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/$defs/connection-type-enum",
+      "description": "The type of connection being used. \n\nThe value of this property MUST come from the 'connection-enum' enumeration."
+    },
+    "x": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "A list of positive numbers representing the X coordinates of the connection. The list MUST contain at least two values to represent one straight line. \n\nThis property is strongly connected with the y property. Both x and y lists MUST have the same number of values (elements) defined, as they together create a point of the connection on the canvas (e.g., x1 with y1, x2 with y2, etc.)."
+    },
+    "y": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "A list of positive numbers representing the Y coordinates of the connection. The list MUST contain at least two values to represent one straight line. \n\nThis property is strongly connected with the y property. Both x and y lists MUST have the same number of values (elements) defined, as they together create a point of the connection on the canvas (e.g., x1 with y1, x2 with y2, etc.)."
+    }
+  },
+  "required": ["type", "x", "y"],
+  "$defs": {
+    "connection-type-enum": {
+      "type": "string",
+      "enum": [
+        "on-completion",
+        "on-success",
+        "on-failure",
+        "on-true",
+        "on-false",
+        "cases",
+        "next-steps"
+      ]
+    }
+  }
+}

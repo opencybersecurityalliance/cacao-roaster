@@ -1,0 +1,16 @@
+{
+  "name": "cacao2-js",
+  "version": "1.0.0",
+  "description": "A JavaScript library for creating, modifing and serializing CACAO v2 Security Playbooks.",
+  "main": "index.ts",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.0.4",
+    "uuid": "^9.0.0"
+  }
+}

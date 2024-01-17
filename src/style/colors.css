@@ -1,0 +1,67 @@
+:root {
+  --primary: #ffffff;
+  --secondary: #f4f6fc;
+  --tertiary: #e6e8ec;
+  --quaternary: #a8a8a8;
+
+  --header-tab-not-selected: #1c1c27;
+  --header-background: #28293e;
+  --header-button-background: #353750;
+  --header-button-hover: #73759a;
+  --header-button-text: white;
+  --header-text: white;
+  --header-border: #595b7d;
+
+  --border: #d9d9d9;
+  --hover: #e6e8ec;
+  --select: #b8b2fa;
+  --canvas-select-stroke: #8f87e6;
+  --canvas-select-fill: #d7d4ff;
+  --scrollbar: #8f87e6;
+
+  --canvas-background: white;
+  --canvas-overlay-background: white;
+
+  --object-color: rgb(127 147 186);
+  --object-color-strong: rgb(76, 91, 120);
+}
+
+.action--color {
+  --object-color: #6bb8d0 !important;
+  --object-color-strong: #006080 !important;
+}
+
+.end--color {
+  --object-color: #db6c6c !important;
+  --object-color-strong: #7d0001 !important;
+}
+
+.if-condition--color {
+  --object-color: #a063dd !important;
+  --object-color-strong: #6504c1 !important;
+}
+
+.parallel--color {
+  --object-color: #c7ae6f !important;
+  --object-color-strong: #ac7f0c !important;
+}
+
+.playbook-action--color {
+  --object-color: #777777 !important;
+  --object-color-strong: #000000 !important;
+}
+
+.start--color {
+  --object-color: #6fc78d !important;
+  --object-color-strong: #008127 !important;
+}
+
+.switch-condition--color {
+  --object-color: #a063dd !important;
+  --object-color-strong: #6504c1 !important;
+}
+
+.while-condition--color {
+  --object-color: #a063dd !important;
+  --object-color-strong: #6504c1 !important;
+}

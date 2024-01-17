@@ -1,0 +1,95 @@
+.cacaoDialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+
+  max-width: 350px;
+  width: 100%;
+  max-height: 70%;
+  padding: 0px;
+
+  font-family: poppins, sans-serif;
+  color: black;
+
+  background: rgba(243, 243, 243, 1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(214, 214, 214, 0.83);
+}
+
+.cacaoDialog--scrollable {
+  overflow-y: auto;
+  flex-grow: 1;
+  height: 100%;
+  padding: 10px 10px 100px 10px;
+}
+
+.cacaoDialog__title {
+  padding: 15px 20px;
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.cacaoDialog__body {
+  position: relative;
+  overflow: visible;
+}
+
+.cacaoDialog__errormessage {
+  color: red;
+  font-size: 10px;
+  flex-grow: 1;
+}
+
+.cacaoDialog__description {
+  padding: 10px 20px 20px 20px;
+  font-family: sans-serif;
+  font-weight: 200;
+  font-size: 15px;
+  line-height: 25px;
+}
+
+.cacaoDialog__buttonList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  align-items: flex-end;
+  padding: 0 10px 10px 10px;
+  margin-top: 10px;
+}
+
+.buttonList__button {
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.button--primary {
+  background: var(--select);
+  border: 0;
+}
+
+.button--secondary {
+  background: transparent;
+  border: 0;
+  color: black;
+}
+
+.cacaoDialog__message {
+  font-size: 15px;
+  margin: 10px;
+  text-align: center;
+  font-weight: 200;
+}
+
+.cacaoDialog__labels > .property--simple {
+  display: flex;
+}
+
+.cacaoDialog__labels > .property--simple label {
+  text-transform: initial;
+}

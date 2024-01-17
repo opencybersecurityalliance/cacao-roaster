@@ -1,0 +1,245 @@
+.picker-window {
+  border-top: solid 1px var(--header-border);
+  height: calc(100% - 1px) !important;
+  background-color: var(--header-background) !important;
+
+  display: flex;
+  flex-direction: column !important;
+  justify-content: space-evenly !important;
+  align-items: center !important;
+}
+
+.window__logo {
+  max-width: 400px;
+  width: 60vmin;
+  height: 20vmin;
+
+  background-image: url('../assets/logo_with_text.png') !important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.window__buttoncontainer {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* button's container */
+
+.window__button {
+  width: 10vmin;
+  height: 10vmin;
+
+  position: relative;
+  margin: 1px;
+  border: 1px solid var(--header-border);
+  border-radius: 5px;
+  background-color: var(--header-button-background);
+  color: var(--header-text);
+}
+
+.window__button.button--big {
+  width: 35vmin;
+  height: 35vmin;
+}
+
+.window__button.button--small {
+  width: 160px;
+  height: 50px;
+}
+
+.window__button:hover {
+  margin: 0px;
+  border: 2px solid var(--select);
+  color: var(--select) !important;
+}
+
+/* button's icon */
+
+.window__button .button__icon {
+  margin: 0 1.5vh;
+  width: 7vmin;
+  height: 7vmin;
+
+  -webkit-mask: var(--svg);
+  mask: var(--svg);
+  background-color: var(--header-text);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+}
+
+.window__button.button--big .button__icon {
+  margin: 0 2.5vh;
+  width: 30vmin;
+  height: 30vmin;
+}
+
+.window__button.button--small .button__icon {
+  margin: 10px 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.window__button:hover .button__icon {
+  background-color: var(--select);
+}
+
+.window__button.button--new .button__icon {
+  --svg: url('../assets/icons/new_fill.svg');
+}
+
+.window__button.button--open .button__icon {
+  --svg: url('../assets/icons/download_fill.svg');
+}
+
+.window__button.button--settings .button__icon {
+  --svg: url('../assets/icons/settings.svg');
+}
+
+/* button's label */
+
+.window__button .button__label {
+  position: absolute;
+  bottom: 7px;
+  right: 10px;
+  left: 10px;
+  margin: 0;
+
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 300;
+  font-size: 13px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window__button.button--big .button__label {
+  bottom: 10px;
+  right: 10px;
+  left: 10px;
+  margin: 0;
+
+  font-weight: 400;
+  font-size: 26px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window__button.button--small .button__label {
+  bottom: 0px;
+  right: 10px;
+  left: 10px;
+  margin-left: 40px;
+
+  font-weight: 400;
+  font-size: 15px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* User dialog */
+
+.usersettings__dialog {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 800px;
+  width: 90%;
+  max-height: 70%;
+  padding: 0px;
+
+  font-family: Poppins;
+  color: white;
+
+  background: rgb(43, 44, 63);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(115, 117, 154);
+}
+
+.dialog__title {
+  padding: 10px 15px;
+  letter-spacing: 2px;
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.dialog__property {
+  margin-bottom: 10px;
+  padding: 0px 5px;
+  width: calc(100% - 10px);
+}
+
+.dialog__property > .property__label {
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.dialog__property > input {
+  height: 30px;
+  resize: vertical;
+}
+
+.dialog__property > textarea {
+  min-height: 18px;
+  height: 130px;
+  resize: vertical;
+}
+
+.dialog__property > .property__input {
+  padding: 0px 5px;
+  width: calc(100% - 12px);
+  font-size: 13px;
+  font-weight: 200;
+  color: white;
+
+  background: rgb(60, 61, 92);
+  border-radius: 7px;
+  border: 1px solid rgba(34, 36, 81, 0.84);
+}
+
+.dialog__property > input.input--incorrect {
+  border: 1px solid rgba(255, 0, 0, 0.601);
+}
+
+.dialog__buttonList {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.dialog__buttonList > button {
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.dialog__buttonList > button.button--primary {
+  color: black;
+}

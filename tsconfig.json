@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "allowJs": true,
+    "strict": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "paths": {
+      "diagram-js": ["node_modules/diagram-js"],
+      "diagram-js/lib/features/modeling": [
+        "node_modules/diagram-js/lib/features/modeling"
+      ],
+      "@schemas/*": ["/lib/cacao-json-schemas/schemas/*"]
+    }
+  }
+}
