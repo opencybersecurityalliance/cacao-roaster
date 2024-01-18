@@ -1,0 +1,20 @@
+{
+  "$id": "https://raw.githubusercontent.com/cyentific-rni/cacao-coordinates-extension/main/schemas/on-success.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "on-success",
+  "allOf": [
+    {
+      "$ref": "/connection.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The value of this property MUST be 'on-success'.",
+          "enum": ["on-success"]
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

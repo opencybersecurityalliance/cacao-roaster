@@ -1,0 +1,38 @@
+{
+  "$id": "https://raw.githubusercontent.com/cyentific-rni/cacao-coordinates-extension/main/schemas/coordinates.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "coordinates",
+  "description": "The coordinates object indicates the position (in pixels) of the top left corner of a visualized CACAO object relative to the upper left (origin - O) of a canvas, along with its width and height (size) and connections (paths) to other objects.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["coordinates"],
+      "description": "The value of this property MUST be 'coordinates'."
+    },
+    "x": {
+      "type": "integer",
+      "description": "A positive number representing the X coordinate of the top left corner of the object visualized relative to the canvas's upper-left (origin - O) corner. This number refers to pixels."
+    },
+    "y": {
+      "type": "integer",
+      "description": "A positive number representing the Y coordinate of the top left corner of the object visualized relative to the canvas's upper-left (origin - O) corner. This number refers to pixels."
+    },
+    "width": {
+      "type": "integer",
+      "description": "A positive number representing the width of the object visualized. This number refers to pixels."
+    },
+    "height": {
+      "type": "integer",
+      "description": "A positive number representing the height of the object visualized. This number refers to pixels."
+    },
+    "outgoing_connections": {
+      "type": "array",
+      "items": {
+        "$ref": "/connection.json"
+      },
+      "description": "The outgoing connections (paths) of the object visualized. "
+    }
+  },
+  "required": ["type", "x", "y"]
+}

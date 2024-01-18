@@ -1,0 +1,56 @@
+.djs-palette-entries .group[data-group='tools'] {
+  padding-bottom: 5px;
+  position: absolute;
+  top: 0px;
+  left: 60px;
+  z-index: -1;
+
+  display: flex;
+  flex-direction: column;
+
+  background: rgba(244, 244, 244, 0.55);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.1px);
+  -webkit-backdrop-filter: blur(5.1px);
+  border: 1px solid rgba(214, 214, 214, 0.83);
+
+  transition: 300ms ease;
+}
+
+.djs-palette.palette--expanded .group[data-group='tools'] {
+  left: 170px;
+}
+
+.toolsentry {
+  border-radius: 9px !important;
+  position: relative;
+  height: 30px !important;
+  width: 30px !important;
+  margin: 5px 5px 0 5px;
+}
+
+.toolsentry::before {
+  font-size: 20px;
+  height: 30px !important;
+  width: 30px !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.djs-lasso-overlay {
+  fill: var(--canvas-select-fill);
+  stroke: var(--canvas-select-stroke);
+  fill-opacity: 0.5;
+  rx: 10px;
+  ry: 10px;
+  stroke-width: 2px;
+  shape-rendering: geometricPrecision;
+  pointer-events: none;
+}

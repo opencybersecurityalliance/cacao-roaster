@@ -1,0 +1,41 @@
+.djs-minimap {
+  top: 10px;
+  right: 10px;
+
+  background: rgba(244, 244, 244, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.1px);
+  -webkit-backdrop-filter: blur(5.1px);
+  border: 1px solid rgba(214, 214, 214, 0.83);
+
+  transition-duration: 200ms;
+}
+
+.minimap--move {
+  right: 360px !important;
+}
+
+.djs-minimap .map {
+  width: 240px !important;
+  height: 120px !important;
+}
+
+.djs-minimap .viewport-dom {
+  border: solid 1px var(--select) !important;
+  border-radius: 5px;
+}
+
+.djs-minimap:not(.open) .toggle:before {
+  content: '' !important;
+}
+
+.djs-minimap.open .toggle:before {
+  content: '' !important;
+}
+
+.djs-minimap .toggle {
+  padding: 0px !important;
+  margin: 0px !important;
+  background-color: var(--select);
+}

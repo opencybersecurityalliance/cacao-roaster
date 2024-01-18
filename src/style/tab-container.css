@@ -1,0 +1,97 @@
+#app-logo {
+  height: calc(100% - 4px);
+  width: 28px;
+  background-image: url('../assets/logo.png');
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+  margin: 2px;
+}
+
+#header-tab-container {
+  border-left: 1px solid var(--header-border);
+  display: flex;
+  flex-direction: row;
+}
+
+#header-new-tab-button {
+  margin: 5px;
+  height: calc(100% - 10px);
+  width: 20px;
+  background-image: url('../assets/icons/add.png');
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+  transition-duration: 100ms;
+}
+
+#header-new-tab-button:hover {
+  background-color: var(--header-button-background);
+  border-radius: 2px;
+  transform: scale(1.1);
+}
+
+#header-new-tab-button:active {
+  transform: scale(0.9);
+}
+
+.header-tab-entry {
+  border-right: 1px solid var(--header-border);
+  color: var(--header-text);
+  height: calc(100%);
+  width: 120px;
+  padding: 0 5px;
+  vertical-align: middle;
+
+  font-family: Poppins;
+  font-weight: 300;
+  font-size: 12px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.header-tab-entry-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-tab-entry-remove-button {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 10;
+
+  background-image: url('../assets/icons/cross.png');
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+
+  display: none;
+}
+
+.tab-open:hover > .header-tab-entry-remove-button {
+  display: block;
+  background-color: var(--header-background);
+  box-shadow: -10px 0px 10px 2px var(--header-background);
+}
+
+.header-tab-entry-remove-button:hover {
+  background-color: var(--header-button-background) !important;
+  border-radius: 2px;
+}
+
+.tab-open {
+  background-color: var(--header-background);
+  border-bottom: 1px solid var(--header-background);
+  z-index: 10;
+}
