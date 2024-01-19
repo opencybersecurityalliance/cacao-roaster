@@ -1,0 +1,8 @@
+CONTRIBUTING.md
+IP-STATEMENT.md
+LICENSE.md
+README.md
+node_modules
+Dockerfile
+.dockerignore
+.prettierrc

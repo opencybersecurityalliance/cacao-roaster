@@ -95,6 +95,13 @@ Host production bundle
 serve dist
 ```
 
+Or use [Docker](https://www.docker.com/) to spin up a fully functioning container
+
+```
+docker build -t cacao-roaster .
+docker run -it -p 3000:3000 cacao-roaster
+```
+
 ## Contributing
 
 Add a brief explanation of what kind of contributions you are looking for and what your requirements are for accepting them. Add a link to [CONTRIBUTING.md](/CONTRIBUTING.md) and a link to [CODE_OF_CONDUCT](link to your code_of_conduct.md file).
