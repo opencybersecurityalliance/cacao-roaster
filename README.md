@@ -121,11 +121,11 @@ Stay up to date on meetings, announcements and other discussions with the [CACAO
 
 ### Join us on Slack
 
-CACAO Roaste has a Slack channel on the OCA slack. [Join here](https://join.slack.com/t/open-cybersecurity/shared_invite/zt-1jsgt1053-oYsfBPXXChhbRO4JO5Xo1A) and say hi in #cacao-roaster.
+CACAO Roaste has a Slack channel on the OCA Slack. [Join here](https://join.slack.com/t/open-cybersecurity/shared_invite/zt-1jsgt1053-oYsfBPXXChhbRO4JO5Xo1A) and say hi in #cacao-roaster.
 
 ## License
 
-*Example text*: This project is licensed under the  Aapache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
+*Example text*: This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
 # Governance
 
