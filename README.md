@@ -26,7 +26,7 @@ CACAO Roaster is a sub-project of the Open Cybersecurity Alliance. It is a web a
 - [CLA \& Non-assert signatures required](#cla--non-assert-signatures-required)
 # Project Logo
 
-<img src="/artwork/CACAO-Roaster-logo.png" alt="CACAO Roaster logo" width="400"/>
+<img src="/artwork/CACAO-Roaster-logo.jpg" alt="CACAO Roaster logo" width="400"/>
 
 # Introduction
 
