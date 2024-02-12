@@ -1,5 +1,8 @@
-<img src="artwork/OCA 1.png" width="400">
+<img src="/artwork/CACAO-Roaster-logo.jpg" alt="CACAO Roaster logo" width="400"/>
 
+[![pages-build-deployment](https://github.com/opencybersecurityalliance/cacao-roaster/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/opencybersecurityalliance/cacao-roaster/actions/workflows/pages/pages-build-deployment)
+
+**Online Instance:** https://opencybersecurityalliance.github.io/cacao-roaster/
 # CACAO Roaster Sub-Project
 
 CACAO Roaster is a sub-project of the Open Cybersecurity Alliance. It is a web application for generating, parsing and validating, manipulating, and visualizing CACAO v2.0 playbooks.
@@ -8,7 +11,6 @@ CACAO Roaster is a sub-project of the Open Cybersecurity Alliance. It is a web a
 
 - [CACAO Roaster Sub-Project](#cacao-roaster-sub-project)
 - [Table of contents](#table-of-contents)
-- [Project Logo](#project-logo)
 - [Introduction](#introduction)
   - [Project status](#project-status)
   - [Integration with other existing OCA or OASIS projects](#integration-with-other-existing-oca-or-oasis-projects)
@@ -24,9 +26,6 @@ CACAO Roaster is a sub-project of the Open Cybersecurity Alliance. It is a web a
   - [License](#license)
 - [Governance](#governance)
 - [CLA \& Non-assert signatures required](#cla--non-assert-signatures-required)
-# Project Logo
-
-<img src="/artwork/CACAO-Roaster-logo.jpg" alt="CACAO Roaster logo" width="400"/>
 
 # Introduction
 
@@ -74,6 +73,7 @@ npm i
 ```
 npm run start
 ```
+The CACAO Roaster will run locally on: http://localhost:3000/
 
 **Building the project for production**
 
