@@ -53,15 +53,12 @@ export default class CacaoHeader {
 
     this.initHeader(tabContainer);
 
-    eventBus.on(
-      ['elements.changed', 'diagram.init', 'playbook.changed', 'editor.loaded'],
-      () => {
-        this.updateName();
-        this.updateTags();
-        this.updateLabels();
-        this.loadHeaderOptionEntries();
-      },
-    );
+    eventBus.on(['elements.changed', 'diagram.init', 'playbook.changed', 'editor.loaded'], () => {
+      this.updateName();
+      this.updateTags();
+      this.updateLabels();
+      this.loadHeaderOptionEntries();
+    });
     this.updateName();
     this.updateTags();
     this.updateLabels();
@@ -72,13 +69,10 @@ export default class CacaoHeader {
    */
   private updateName() {
     let playbookName = this._playbookHandler.getPlaybookProperties('name');
-    let playbookDescription =
-      this._playbookHandler.getPlaybookProperties('description');
+    let playbookDescription = this._playbookHandler.getPlaybookProperties('description');
 
     if (!this._headerName || !this._headerDescription) {
-      throw new Error(
-        'div with these id MUST be defined : header-name, header-description',
-      );
+      throw new Error('div with these id MUST be defined : header-name, header-description');
     }
     if (playbookName === '') {
       playbookName = '';
@@ -118,8 +112,7 @@ export default class CacaoHeader {
 
     if (tlp !== '') {
       let tlpTag = document.createElement('div');
-      tlpTag.className =
-        tlp.replace(/[:+]/g, '-').toLowerCase() + '-tag tlp-tag tag';
+      tlpTag.className = tlp.replace(/[:+]/g, '-').toLowerCase() + '-tag tlp-tag tag';
       tlpTag.innerText = tlp;
       this._headerTags.appendChild(tlpTag);
     }
@@ -208,10 +201,7 @@ export default class CacaoHeader {
       let hideNext: undefined | HTMLElement = undefined;
       let countHide = 0;
       for (let label of this._LabelsList) {
-        if (
-          label.offsetLeft + label.offsetWidth >
-          this._headerLabels.offsetWidth - 70
-        ) {
+        if (label.offsetLeft + label.offsetWidth > this._headerLabels.offsetWidth - 70) {
           label.style.visibility = 'hidden';
           if (!hideNext) {
             hideNext = label;
@@ -245,9 +235,7 @@ export default class CacaoHeader {
     let entries: HeaderOptionEntry[] = [
       {
         title: 'EXPANDED MODE',
-        className: this._cacaoModeling.isExpandedMode()
-          ? 'expander expanded'
-          : 'expander',
+        className: this._cacaoModeling.isExpandedMode() ? 'expander expanded' : 'expander',
         action: (event: any) => {
           for (let element of this._elementRegistry.getAll()) {
             if (CacaoUtils.isConstructType(element?.type)) {
@@ -255,13 +243,9 @@ export default class CacaoHeader {
             }
           }
           if (this._cacaoModeling.isExpandedMode()) {
-            this._headerOptions
-              .getElementsByClassName('expander')[0]
-              ?.classList.add('expanded');
+            this._headerOptions.getElementsByClassName('expander')[0]?.classList.add('expanded');
           } else {
-            this._headerOptions
-              .getElementsByClassName('expander')[0]
-              ?.classList.remove('expanded');
+            this._headerOptions.getElementsByClassName('expander')[0]?.classList.remove('expanded');
           }
         },
       },
@@ -286,10 +270,17 @@ export default class CacaoHeader {
         },
       },
       {
-        title: 'JSON',
+        title: 'STIX 2.1 JSON',
         className: 'export',
         action: async (event: any) => {
-          this._cacaoExporter.openExportPreferencesDialog();
+          this._cacaoExporter.openExportPreferencesDialog('STIX 2.1 JSON');
+        },
+      },
+      {
+        title: 'CACAO JSON',
+        className: 'export',
+        action: async (event: any) => {
+          this._cacaoExporter.openExportPreferencesDialog('CACAO JSON');
         },
       },
       {
