@@ -17,18 +17,11 @@
         },
         "tlpv2_level": {
           "type": "string",
-          "enum": [
-            "TLP:RED",
-            "TLP:AMBER",
-            "TLP:AMBER+STRICT",
-            "TLP:GREEN",
-            "TLP:CLEAR"
-          ],
+          "enum": ["TLP:RED", "TLP:AMBER", "TLP:AMBER+STRICT", "TLP:GREEN", "TLP:CLEAR"],
           "description": "The value of this property is the name of the TLP V2 level as defined by FIRST [TLP]. The value MUST be one of the following: 'TLP:RED', 'TLP:AMBER', 'TLP:AMBER+STRICT', 'TLP:GREEN', 'TLP:CLEAR'"
         }
       }
     }
   ],
-  "required": ["tlpv2_level"],
-  "unevaluatedProperties": false
+  "required": ["tlpv2_level"]
 }

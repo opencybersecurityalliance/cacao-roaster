@@ -37,6 +37,5 @@
       }
     }
   ],
-  "required": ["command", "content_b64"],
-  "unevaluatedProperties": false
+  "required": ["command", "content_b64"]
 }

@@ -20,6 +20,5 @@
       }
     }
   ],
-  "required": ["next-step"],
-  "unevaluatedProperties": false
+  "required": ["next-step"]
 }

@@ -77,6 +77,5 @@
     "status",
     "command_b64",
     "automated_execution"
-  ],
-  "unevaluatedProperties": false
+  ]
 }

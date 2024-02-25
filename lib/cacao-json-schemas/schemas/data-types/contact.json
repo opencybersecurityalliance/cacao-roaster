@@ -27,6 +27,5 @@
       "type": "string",
       "description": "Additional contact information."
     }
-  },
-  "unevaluatedProperties": false
+  }
 }

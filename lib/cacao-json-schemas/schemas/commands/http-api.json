@@ -41,6 +41,5 @@
       }
     }
   ],
-  "required": ["command"],
-  "unevaluatedProperties": false
+  "required": ["command"]
 }

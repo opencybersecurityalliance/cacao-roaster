@@ -27,6 +27,5 @@
       }
     }
   ],
-  "required": ["condition", "on_true"],
-  "unevaluatedProperties": false
+  "required": ["condition", "on_true"]
 }
