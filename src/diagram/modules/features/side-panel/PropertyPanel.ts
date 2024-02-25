@@ -512,6 +512,17 @@ export default class PropertyPanel {
       );
       complexInput.setDefaultValues(defaultValues[propertyName]);
       this._elements.push(complexInput);
+    } else if (propertyName == 'related_to') {
+      let complexInput = new ListOfString(
+        propertyName,
+        propertyType,
+        container,
+        (name: string, value: boolean) => {
+          this.setDisplayed(name, value);
+        },
+      );
+      complexInput.setDefaultValues(defaultValues[propertyName]);
+      this._elements.push(complexInput);
     } else if (propertyName == 'agent') {
       this.createLabeledInput(
         propertyName,
