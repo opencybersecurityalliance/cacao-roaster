@@ -36,7 +36,6 @@
     },
     "step_variables": {
       "type": "object",
-      "unevaluatedProperties": false,
       "description": "This property contains the variables that can be used within this workflow step or within commands, agents, and targets referenced by this workflow step. See section 10.18.2 for information about referencing variables. \n\nThe key for each entry in the dictionary MUST be a string that uniquely identifies the variable. The value for each key MUST be a CACAO 'variable' data type (see section 10.18.3).",
       "patternProperties": {
         "^__[a-zA-Z_][a-zA-Z0-9_-]{0,199}__$": {
@@ -63,7 +62,6 @@
     "step_extensions": {
       "minProperties": 1,
       "type": "object",
-      "unevaluatedProperties": false,
       "patternProperties": {
         "^extension-definition--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$": {
           "type": "object"
