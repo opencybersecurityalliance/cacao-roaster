@@ -336,7 +336,6 @@
     "workflow_start",
     "workflow"
   ],
-  "unevaluatedProperties": false,
   "$defs": {
     "playbook-type-ov": {
       "anyOf": [

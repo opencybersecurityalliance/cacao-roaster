@@ -23,7 +23,6 @@
     }
   ],
   "required": ["sector"],
-  "unevaluatedProperties": false,
   "$defs": {
     "industry-sector-ov": {
       "anyOf": [

@@ -22,7 +22,6 @@
         "cases": {
           "description": "This property is a dictionary that defines one or more case values (as dictionary keys) and a step ID (as a key value) to be processed when the case value is matched against the switch value. \n\nThe value for each entry in the dictionary MUST be an identifier and it MUST represent a CACAO workflow step object. This value uniquely identifies the steps to be processed when that key/value is chosen (see section 10.10 for more information on identifiers). \n\nEach entry in the cases property forms a branch of steps that are to be executed, even if there is only one workflow step in the branch. Each branch MUST reference a unique end step when that branch has completed processing. This allows implementations to know when to return to the original switch condition step that started that branch to look for any on_completion, on_success, or on_failure actions. \n\nThis dictionary MAY have a 'default' case value.",
           "type": "object",
-          "unevaluatedProperties": false,
           "patternProperties": {
             "^[a-zA-Z0-9_-]{0,250}": {
               "oneOf": [

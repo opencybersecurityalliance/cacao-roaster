@@ -27,7 +27,6 @@
     }
   ],
   "required": ["category"],
-  "unevaluatedProperties": false,
   "$defs": {
     "security-category-type-ov": {
       "anyOf": [

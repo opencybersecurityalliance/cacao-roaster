@@ -34,7 +34,6 @@
     }
   ],
   "required": ["type"],
-  "unevaluatedProperties": false,
   "$defs": {
     "command-type-ov": {
       "anyOf": [

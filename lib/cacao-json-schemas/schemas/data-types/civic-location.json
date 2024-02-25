@@ -58,7 +58,6 @@
       "description": "Defines the precision of the coordinates specified by the 'latitude' and 'longitude' properties. This is measured in meters. The actual agent may be anywhere up to precision meters from the defined point. \n\nIf this property is not present, then the precision is unspecified. \n\nIf this property is present, the 'latitude' and 'longitude' properties MUST be present."
     }
   },
-  "unevaluatedProperties": false,
   "$defs": {
     "region-enum": {
       "type": "string",

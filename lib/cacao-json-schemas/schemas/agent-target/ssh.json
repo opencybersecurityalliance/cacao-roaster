@@ -17,7 +17,6 @@
         },
         "address": {
           "type": "object",
-          "unevaluatedProperties": false,
           "patternProperties": {
             "^url$": {
               "type": "array",
@@ -85,7 +84,7 @@
     }
   ],
   "required": ["address"],
-  "unevaluatedProperties": false,
+
   "$defs": {
     "security-category-type-ov": {
       "anyOf": [
