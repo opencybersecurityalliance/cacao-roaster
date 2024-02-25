@@ -17,7 +17,7 @@ export abstract class CommandDataFactory {
     switch (props.type) {
       case 'bash':
         return new Bash(props as BashProps);
-      case 'caldera':
+      case 'caldera-cmd':
         return new CalderaCmd(props as CalderaCmdProps);
       case 'elastic':
         return new Elastic(props as ElasticProps);
