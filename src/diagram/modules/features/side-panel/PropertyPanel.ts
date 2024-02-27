@@ -30,6 +30,7 @@ import { ListOfIdentifier } from './ListInput/ListOfIdentifier';
 import { ListOfObject } from './ListInput/ListOfObject';
 import { ListOfOpenVocab } from './ListInput/ListOfOpenVocab';
 import { ListOfString } from './ListInput/ListOfString';
+import { ListOfHeaders } from './ListInput/ListOfHeaders';
 import { PanelButton } from './PanelButton';
 import { PanelElement } from './PanelElement';
 import { PanelInput } from './PanelInput';
@@ -41,7 +42,6 @@ import { ListAgentTarget } from './ListAgentTarget';
 import { ListOfAgent } from './ListInput/ListOfAgent';
 import { DatePickerInput } from './BasicInputs/DatePickerInput';
 import { TitleInput } from './TitleInput';
-import CacaoExporter from '../exporter/CacaoExporter';
 import { ListOfTargets } from './ListInput/ListOfTargets';
 import { CommandInput } from './BasicInputs/CommandInput';
 import { ComplexInput } from './ComplexInput';
@@ -681,6 +681,18 @@ export default class PropertyPanel {
         container,
         new DropDownInput(propertyName, defaultValues[propertyName], identifierList),
       );
+    } else if (propertyName === 'headers') {
+      // Handles http headers property in OpenC2 and http-api commands
+      let complexInput = new ListOfHeaders(
+        propertyName,
+        propertyType,
+        container,
+        (name: string, value: boolean) => {
+          this.setDisplayed(name, value);
+        },
+      );
+      complexInput.setDefaultValues(defaultValues[propertyName]);
+      this._elements.push(complexInput);
     } else if (propertyName.includes('_definitions')) {
       // Handles definition properties
       let complexInput = new DictionaryDefinition(
