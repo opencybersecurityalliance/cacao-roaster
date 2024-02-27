@@ -270,8 +270,8 @@ export default class CacaoHeader {
         },
       },
       {
-        title: 'STIX 2.1 JSON',
-        className: 'export',
+        title: 'STIX 2.1 COA Playbook',
+        className: 'export_stix',
         action: async (event: any) => {
           this._cacaoExporter.openExportPreferencesDialog('STIX 2.1 JSON');
         },

@@ -190,6 +190,15 @@
   --svg: url('../assets/icons/download.svg');
 }
 
+.export_stix {
+  --svg: url('../assets/icons/download.svg');
+  width: 59px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .metadata {
   --svg: url('../assets/icons/edit.svg');
 }
