@@ -93,3 +93,113 @@
 .cacaoDialog__labels > .property--simple label {
   text-transform: initial;
 }
+
+/* User dialog */
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 800px;
+  width: 90%;
+  max-height: 70%;
+  padding: 0px;
+
+  font-family: Poppins;
+  color: white;
+
+  background: rgb(43, 44, 63);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(115, 117, 154);
+}
+
+.dialog__title {
+  padding: 10px 15px;
+  letter-spacing: 2px;
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.dialog__property {
+  margin-bottom: 10px;
+  padding: 0px 5px;
+  width: calc(100% - 10px);
+}
+
+.dialog__property > .property__label {
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.dialog__property > input {
+  height: 30px;
+  resize: vertical;
+}
+
+.dialog__property > .radioButton {
+  height: auto;
+  margin-right: 5px;
+}
+
+.dialog__property > textarea {
+  min-height: 18px;
+  height: 130px;
+  resize: vertical;
+}
+
+.dialog__property > .property__input {
+  padding: 0px 5px;
+  width: calc(100% - 12px);
+  font-size: 13px;
+  font-weight: 200;
+  color: white;
+
+  background: rgb(60, 61, 92);
+  border-radius: 7px;
+  border: 1px solid rgba(34, 36, 81, 0.84);
+}
+
+.dialog__property > .cacaoImportTextarea {
+  min-height: 200px;
+  height: 400px;
+  resize: vertical;
+  padding: 5px;
+}
+
+.cacaoImportTextarea::placeholder {
+  color: lightgray;
+}
+
+.radioButtonLabelContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5px;
+  align-items: baseline;
+}
+
+.dialog__property > input.input--incorrect {
+  border: 1px solid rgba(255, 0, 0, 0.601);
+}
+
+.dialog__buttonList {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.dialog__buttonList > button {
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.dialog__buttonList > button.button--primary {
+  color: black;
+}

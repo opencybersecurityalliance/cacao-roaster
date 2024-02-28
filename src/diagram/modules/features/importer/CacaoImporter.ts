@@ -83,9 +83,7 @@ export default class CacaoImporter {
           stepId = playbook.workflow_start;
         } else {
           //if the step does not have any parent
-          if (
-            this._playbookHandler.getPreviousSteps(stepId, playbook).length != 0
-          ) {
+          if (this._playbookHandler.getPreviousSteps(stepId, playbook).length != 0) {
             continue;
           }
         }
@@ -110,27 +108,20 @@ export default class CacaoImporter {
 
         //load every steps connected to the start step
         while (list.length > 0) {
-          [step, stepId, previousStep, previousStepId, connectionType] =
-            list.shift() as [
-              Partial<WorkflowStep>,
-              Identifier,
-              Partial<WorkflowStep> | undefined,
-              Identifier | undefined,
-              CacaoConnectionType | undefined,
-            ];
+          [step, stepId, previousStep, previousStepId, connectionType] = list.shift() as [
+            Partial<WorkflowStep>,
+            Identifier,
+            Partial<WorkflowStep> | undefined,
+            Identifier | undefined,
+            CacaoConnectionType | undefined,
+          ];
 
           let alreadyExist = this._elementRegistry.get(stepId) != undefined;
 
           if (!previousStep || !previousStepId || !connectionType) {
             this.loadStep(step, stepId);
           } else {
-            this.loadNextStep(
-              step,
-              stepId,
-              previousStep,
-              previousStepId,
-              connectionType,
-            );
+            this.loadNextStep(step, stepId, previousStep, previousStepId, connectionType);
           }
 
           delete queue[stepId];
@@ -189,12 +180,7 @@ export default class CacaoImporter {
       y: position.y,
     });
 
-    this._cacaoModeling.createShape(
-      startShape,
-      position,
-      this._canvas.getRootElement() as any,
-      0,
-    );
+    this._cacaoModeling.createShape(startShape, position, this._canvas.getRootElement() as any, 0);
   }
 
   /**
