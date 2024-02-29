@@ -42,6 +42,5 @@
       }
     }
   ],
-  "required": ["playbook_id"],
-  "unevaluatedProperties": false
+  "required": ["playbook_id"]
 }

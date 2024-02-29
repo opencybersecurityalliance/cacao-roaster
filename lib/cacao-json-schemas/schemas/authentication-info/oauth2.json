@@ -33,6 +33,5 @@
       }
     }
   ],
-  "required": ["oauth_header", "token"],
-  "unevaluatedProperties": false
+  "required": ["oauth_header", "token"]
 }

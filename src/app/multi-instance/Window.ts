@@ -46,6 +46,7 @@ export default class CacaoWindow {
     let primaryButtonContainer = document.createElement('div');
     primaryButtonContainer.className = 'window__buttoncontainer';
 
+    // Button for creating a new CACAO playbook.
     let newButton = document.createElement('div');
     newButton.className = 'window__button button--new button--big';
     newButton.innerHTML = `
@@ -56,11 +57,12 @@ export default class CacaoWindow {
       this.loadEditor();
     };
 
+    // Button for uploading a CACAO JSON file from local machine.
     let openButton = document.createElement('div');
     openButton.className = 'window__button button--open button--big';
     openButton.innerHTML = `
         <div class="button__icon"></div>
-        <p class="button__label">Import</p>
+        <p class="button__label">Import File</p>
         `;
     openButton.onclick = (e: Event) => {
       try {
@@ -70,9 +72,17 @@ export default class CacaoWindow {
       }
     };
 
+    // Button for importing CACAO playbook in text format.
+    let textImport = document.createElement('div');
+    textImport.className = 'window__button button--paste button--big';
+    textImport.innerHTML = `
+        <div class="button__icon"></div>
+        <p class="button__label">Import Text</p>
+        `;
+    textImport.onclick = (e: Event) => this.openDialogForTextImport();
+
     let settingsButton = document.createElement('div');
-    settingsButton.className =
-      'window__button button--settings button--small button--wholerow';
+    settingsButton.className = 'window__button button--settings button--small button--wholerow';
     settingsButton.innerHTML = `
         <div class="button__icon"></div>
         <p class="button__label">user settings</p>
@@ -84,9 +94,178 @@ export default class CacaoWindow {
     this._container.appendChild(logo);
     primaryButtonContainer.appendChild(newButton);
     primaryButtonContainer.appendChild(openButton);
+    primaryButtonContainer.appendChild(textImport);
     this._container.appendChild(primaryButtonContainer);
     this._container.appendChild(settingsButton);
     this._container.className = 'picker-window';
+  }
+
+  private openDialogForTextImport(): void {
+    let dialog = document.createElement('dialog') as HTMLDialogElement;
+    dialog.className = 'dialog';
+    dialog.addEventListener('keydown', function (event) {
+      if (event.code.toLowerCase() === 'escape') {
+        // remove the 'blurred' class from the body
+        document.body.classList.remove('blurred');
+      }
+    });
+    document.body.appendChild(dialog);
+
+    // Create the title of the dialog
+    let titleDialog = document.createElement('div') as HTMLDivElement;
+    titleDialog.innerHTML = 'Import CACAO Playbook';
+    titleDialog.className = 'dialog__title';
+    dialog.appendChild(titleDialog);
+
+    // Adding blur effect for the rest of the app, besides the dialog
+    document.body.classList.add('blurred');
+
+    // Creates the text area for the user to input the CACAO playbook
+    let textArea = document.createElement('textarea') as HTMLTextAreaElement;
+    textArea.classList.add('property__input', 'cacaoImportTextarea');
+    textArea.placeholder = 'Paste the CACAO JSON here.';
+
+    // Creates radio-buttons input with 3 options: 'Import text', 'import base64 encoded', 'import STIX 2.1 COA Playbook json'
+    let radioButtonContainer = document.createElement('div') as HTMLDivElement;
+    radioButtonContainer.className = 'dialog__radioButtonContainer';
+
+    // Radio button for importing text
+    let placeholderImportText = 'Paste the CACAO JSON here.';
+    this.createImportRadioButton(
+      radioButtonContainer,
+      'CACAO JSON',
+      placeholderImportText,
+      textArea,
+    );
+    dialog.appendChild(radioButtonContainer);
+
+    // Radio button for importing base64 encoded playbook
+    let placeholderImportEncodedPlaybook = 'Paste the base64 encoded CACAO Playbook here.';
+    this.createImportRadioButton(
+      radioButtonContainer,
+      'base64 encoded CACAO Playbook',
+      placeholderImportEncodedPlaybook,
+      textArea,
+    );
+    dialog.appendChild(radioButtonContainer);
+
+    // Adds the text area to the dialog
+    let textAreaContainer = document.createElement('div') as HTMLDivElement;
+    textAreaContainer.className = 'dialog__property';
+    textAreaContainer.appendChild(textArea);
+    dialog.appendChild(textAreaContainer);
+
+    // Creates the button for importing the playbook
+    let importButton = document.createElement('button') as HTMLButtonElement;
+    importButton.classList.add('dialog__buttonList', 'button--primary');
+    importButton.innerHTML = 'Import';
+    importButton.onclick = () => this.importPlaybookFromTextButtonHandler(textArea, dialog);
+
+    // Creates the cancel button for the dialog
+    let cancelButton = document.createElement('button');
+    cancelButton.classList.add('dialog__buttonList', 'button--secondary');
+    cancelButton.innerText = 'Cancel';
+    cancelButton.onclick = () => {
+      dialog.close();
+      dialog.remove();
+      document.body.classList.remove('blurred');
+    };
+
+    // Adds the import button to the dialog
+    let buttonContainer = document.createElement('div') as HTMLDivElement;
+    buttonContainer.className = 'dialog__buttonList';
+    buttonContainer.appendChild(cancelButton);
+    buttonContainer.appendChild(importButton);
+    dialog.appendChild(buttonContainer);
+
+    // Show the dialog
+    dialog.showModal();
+  }
+
+  // Handler for the import button in the dialog for importing a CACAO playbook from text
+  private importPlaybookFromTextButtonHandler(
+    textArea: HTMLTextAreaElement,
+    dialog: HTMLDialogElement,
+  ): void {
+    try {
+      let playbook = textArea.value;
+      if (playbook === '') {
+        throw new Error('The text area is empty.');
+      }
+
+      // Check the value of the radio button
+      let importOption = document.querySelector(
+        'input[name="importOption"]:checked',
+      ) as HTMLInputElement;
+      if (importOption === null) {
+        throw new Error('Please select an import option.');
+      }
+
+      let importOptionValue = importOption.value;
+      if (importOptionValue.includes('base64')) {
+        // Checks if the playbook is base64 encoded
+        const base64Matcher = new RegExp(
+          '^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$',
+        );
+        if (!base64Matcher.test(playbook)) throw new Error('The playbook is not base64 encoded.');
+        // Decodes the base64 encoded playbook to plaintext
+        playbook = Buffer.from(playbook, 'base64').toString('utf-8');
+      }
+
+      // Parses the plaintext to JSON format
+      let playbookJson = JSON.parse(playbook);
+      // Checks if the JSON is a CACAO playbook and loads the editor
+      if (isCacaoPlaybook(playbookJson)) {
+        this.loadEditor(new Playbook(playbookJson));
+        document.body.classList.remove('blurred');
+        dialog.close();
+      } else {
+        throw new Error('The JSON imported is not a CACAO playbook');
+      }
+    } catch (e: any) {
+      cacaoDialog.showAlert('Error when trying to import the playbook', e.message);
+    }
+  }
+
+  // Creates a radio button for importing a CACAO playbook in different formats
+  private createImportRadioButton(
+    radioButtonWrapper: HTMLDivElement,
+    textContent: string,
+    placeholderText: string,
+    textArea: HTMLTextAreaElement,
+  ) {
+    // Div for wrapping the label and the radio button
+    let radioButtonAndLabel = document.createElement('div') as HTMLDivElement;
+    radioButtonAndLabel.classList.add('dialog__property', 'radioButtonLabelContainer');
+
+    // Creates the radio button
+    let importTextRadio = document.createElement('input') as HTMLInputElement;
+    importTextRadio.id = textContent.trim();
+    importTextRadio.type = 'radio';
+    importTextRadio.name = 'importOption';
+    importTextRadio.value = textContent.trim();
+    importTextRadio.textContent = textContent;
+    importTextRadio.classList.add('radioButton');
+    if (textContent === 'CACAO JSON') {
+      importTextRadio.checked = true;
+      // remove focus from the radio button
+      importTextRadio.blur();
+    }
+    radioButtonAndLabel.appendChild(importTextRadio);
+
+    // Creates the label for the radio button
+    let importTextRadioLabel = document.createElement('label') as HTMLLabelElement;
+    importTextRadioLabel.textContent = textContent;
+    importTextRadioLabel.htmlFor = importTextRadio.id;
+    radioButtonAndLabel.appendChild(importTextRadioLabel);
+
+    // Adds the wrapping div to the radioButtonWrapper
+    radioButtonWrapper.appendChild(radioButtonAndLabel);
+
+    // Adds the event listener for the radio button to change the placeholder of the text area
+    importTextRadio.addEventListener('change', function () {
+      textArea.placeholder = placeholderText;
+    });
   }
 
   private openFileExplorer(): void {
@@ -121,18 +300,12 @@ export default class CacaoWindow {
                 jsonFile['playbook'] != undefined &&
                 isCacaoPlaybook(jsonFile['playbook'])
               ) {
-                this.loadEditor(
-                  new Playbook(jsonFile['playbook']),
-                  jsonFile['execution_status'],
-                );
+                this.loadEditor(new Playbook(jsonFile['playbook']), jsonFile['execution_status']);
               } else {
                 throw new Error('The JSON imported is not a CACAO playbook');
               }
             } catch (e: any) {
-              cacaoDialog.showAlert(
-                'Error when trying to import a file',
-                e.message,
-              );
+              cacaoDialog.showAlert('Error when trying to import a file', e.message);
             }
           };
           reader.readAsText(file);

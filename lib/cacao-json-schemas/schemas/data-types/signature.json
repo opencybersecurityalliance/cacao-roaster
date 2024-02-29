@@ -114,7 +114,6 @@
       "required": ["thumbprint"]
     }
   ],
-  "unevaluatedProperties": false,
   "$defs": {
     "signature-algorithm-type-ov": {
       "anyOf": [

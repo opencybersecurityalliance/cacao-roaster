@@ -106,12 +106,7 @@ import {
 } from 'cacao2-js';
 
 // Data markings
-import {
-  DataMarking,
-  MarkingIep,
-  MarkingStatement,
-  MarkingTlp,
-} from 'cacao2-js';
+import { DataMarking, MarkingIep, MarkingStatement, MarkingTlp } from 'cacao2-js';
 
 // Data types
 import {
@@ -429,7 +424,6 @@ export const commonTypeDict: { [key: string]: string } = {
   ssh: 'agent-target',
   'http-basic': 'authentication-info',
   oauth2: 'authentication-info',
-  'private-key': 'authentication-info',
   'user-auth': 'authentication-info',
 };
 
@@ -521,8 +515,7 @@ export const orderInputList = [
 
 export const CoordinatesExtensionIdentifier =
   'extension-definition--418ee24c-9cb1-46d9-afa5-309e01aabc7f';
-export const CoordinatesExtensionDefinition =
-  jsonCoordinatesExtensionDefinition;
+export const CoordinatesExtensionDefinition = jsonCoordinatesExtensionDefinition;
 
 export function updateProperty(propertyObject: any) {
   if (propertyObject == undefined) {
@@ -543,10 +536,7 @@ export function updateProperty(propertyObject: any) {
  * @param schema schema or subschema
  * @returns type of the property, which can be an object
  */
-function getType(
-  schema: Schema,
-  schemaDict: Record<string, Schema>,
-): string | object {
+function getType(schema: Schema, schemaDict: Record<string, Schema>): string | object {
   //get only the referenced type, without the path and '.json'
   if (schema.$ref) {
     const refType = schema.$ref.split('/').pop()?.split('.')[0];
@@ -577,21 +567,14 @@ function getType(
       if (schema.properties || schema.patternProperties) {
         const objectProperties: Record<string, any> = {};
         if (schema.properties) {
-          Object.entries(schema.properties).forEach(
-            ([propertyName, propertySchema]) => {
-              objectProperties[propertyName] = getType(
-                propertySchema,
-                schemaDict,
-              );
-            },
-          );
+          Object.entries(schema.properties).forEach(([propertyName, propertySchema]) => {
+            objectProperties[propertyName] = getType(propertySchema, schemaDict);
+          });
         }
         if (schema.patternProperties) {
-          Object.entries(schema.patternProperties).forEach(
-            ([pattern, propertySchema]) => {
-              objectProperties[pattern] = getType(propertySchema, schemaDict);
-            },
-          );
+          Object.entries(schema.patternProperties).forEach(([pattern, propertySchema]) => {
+            objectProperties[pattern] = getType(propertySchema, schemaDict);
+          });
         }
         return objectProperties;
       }
@@ -624,10 +607,7 @@ function getDescription(schema: Schema, schemaDict: Record<string, Schema>) {
  * @param schemaDict
  * @returns
  */
-function extractEnums(
-  schema: Schema,
-  schemaDict: Record<string, Schema>,
-): Record<string, any> {
+function extractEnums(schema: Schema, schemaDict: Record<string, Schema>): Record<string, any> {
   const enums: Record<string, any> = {};
 
   if (schema.$defs) {
@@ -677,22 +657,12 @@ export function extractSchemaTypes(
     dictionary.required = schema.required;
   }
   if (schema.properties) {
-    Object.entries(schema.properties).forEach(
-      ([propertyName, propertySchema]) => {
-        dictionary.properties[propertyName] = getType(
-          propertySchema,
-          schemaDict,
-        );
-      },
-    );
-    Object.entries(schema.properties).forEach(
-      ([propertyName, propertySchema]) => {
-        dictionary.descriptions[propertyName] = getDescription(
-          propertySchema,
-          schemaDict,
-        );
-      },
-    );
+    Object.entries(schema.properties).forEach(([propertyName, propertySchema]) => {
+      dictionary.properties[propertyName] = getType(propertySchema, schemaDict);
+    });
+    Object.entries(schema.properties).forEach(([propertyName, propertySchema]) => {
+      dictionary.descriptions[propertyName] = getDescription(propertySchema, schemaDict);
+    });
   }
 
   //Handles the parent construct, to get the common properties
@@ -701,16 +671,12 @@ export function extractSchemaTypes(
 
     schema.allOf.forEach(subSchema => {
       if (subSchema.$ref) {
-        const refSchema =
-          schemaDict[subSchema.$ref.split('/').pop()?.split('.')[0] as string];
+        const refSchema = schemaDict[subSchema.$ref.split('/').pop()?.split('.')[0] as string];
         if (refSchema) {
           const refDictionary = extractSchemaTypes(refSchema, schemaDict);
           dictionary.commonProperties = refDictionary.properties;
           if (refDictionary.required) {
-            dictionary.required = [
-              ...(dictionary.required || []),
-              ...refDictionary.required,
-            ];
+            dictionary.required = [...(dictionary.required || []), ...refDictionary.required];
           }
           if (refDictionary.enums) {
             dictionary.enums = { ...dictionary.enums, ...refDictionary.enums };
@@ -723,22 +689,12 @@ export function extractSchemaTypes(
           }
         }
       } else if (subSchema.properties) {
-        Object.entries(subSchema.properties).forEach(
-          ([propertyName, propertySchema]) => {
-            dictionary.properties[propertyName] = getType(
-              propertySchema,
-              schemaDict,
-            );
-          },
-        );
-        Object.entries(subSchema.properties).forEach(
-          ([propertyName, propertySchema]) => {
-            dictionary.descriptions[propertyName] = getDescription(
-              propertySchema,
-              schemaDict,
-            );
-          },
-        );
+        Object.entries(subSchema.properties).forEach(([propertyName, propertySchema]) => {
+          dictionary.properties[propertyName] = getType(propertySchema, schemaDict);
+        });
+        Object.entries(subSchema.properties).forEach(([propertyName, propertySchema]) => {
+          dictionary.descriptions[propertyName] = getDescription(propertySchema, schemaDict);
+        });
       }
     });
   }

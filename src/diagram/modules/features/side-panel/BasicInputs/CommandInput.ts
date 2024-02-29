@@ -50,10 +50,7 @@ export class CommandInput extends BasicInput {
 
     if (this._initialValue) {
       if (this._isBase64) {
-        this._commandField.value = Buffer.from(
-          this._initialValue,
-          'base64',
-        ).toString('utf-8');
+        this._commandField.value = Buffer.from(this._initialValue, 'base64').toString('utf-8');
       } else {
         this._commandField.value = this._initialValue;
       }
@@ -73,9 +70,7 @@ export class CommandInput extends BasicInput {
   submit(): any {
     if (this._commandField) {
       if (this._isBase64) {
-        return Buffer.from(this._commandField.value, 'utf-8').toString(
-          'base64',
-        );
+        return Buffer.from(this._commandField.value, 'utf-8').toString('base64');
       }
       return this._commandField.value;
     }

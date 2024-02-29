@@ -30,6 +30,7 @@ import { ListOfIdentifier } from './ListInput/ListOfIdentifier';
 import { ListOfObject } from './ListInput/ListOfObject';
 import { ListOfOpenVocab } from './ListInput/ListOfOpenVocab';
 import { ListOfString } from './ListInput/ListOfString';
+import { ListOfHeaders } from './ListInput/ListOfHeaders';
 import { PanelButton } from './PanelButton';
 import { PanelElement } from './PanelElement';
 import { PanelInput } from './PanelInput';
@@ -41,7 +42,6 @@ import { ListAgentTarget } from './ListAgentTarget';
 import { ListOfAgent } from './ListInput/ListOfAgent';
 import { DatePickerInput } from './BasicInputs/DatePickerInput';
 import { TitleInput } from './TitleInput';
-import CacaoExporter from '../exporter/CacaoExporter';
 import { ListOfTargets } from './ListInput/ListOfTargets';
 import { CommandInput } from './BasicInputs/CommandInput';
 import { ComplexInput } from './ComplexInput';
@@ -104,9 +104,7 @@ export default class PropertyPanel {
     this._statusDefaultValues = playbookHandler._executionStatus;
     this._buttonContainer = document.createElement('div');
     this._buttonContainer.classList.add('sidepanel__action');
-    this._buttonContainer.classList.add(
-      this._propertyType?.replace(/ /g, '_') + '--color',
-    );
+    this._buttonContainer.classList.add(this._propertyType?.replace(/ /g, '_') + '--color');
     this._statusContainer = document.createElement('div');
     this._statusContainer.classList.add('sidepanel__section');
   }
@@ -241,9 +239,7 @@ export default class PropertyPanel {
       this._statusInput.setStepId(this._stepId);
     }
     let defaultValues =
-      this._statusDefaultValues &&
-      this._stepId &&
-      this._statusDefaultValues[this._stepId]
+      this._statusDefaultValues && this._stepId && this._statusDefaultValues[this._stepId]
         ? this._statusDefaultValues[this._stepId]
         : {};
 
@@ -265,11 +261,7 @@ export default class PropertyPanel {
     jsonField.classList.add('container--json');
     jsonField.disabled = true;
 
-    let jsonString = JSON.stringify(
-      CacaoUtils.filterEmptyValues(this.submit()),
-      null,
-      10,
-    );
+    let jsonString = JSON.stringify(CacaoUtils.filterEmptyValues(this.submit()), null, 10);
     jsonField.value = jsonString;
 
     this._jsonContainer.appendChild(jsonField);
@@ -305,9 +297,7 @@ export default class PropertyPanel {
 
     let modeSwitcherContainer = document.createElement('div');
 
-    modeSwitcherContainer.classList.add(
-      this._propertyType?.replace(/ /g, '_') + '--color',
-    );
+    modeSwitcherContainer.classList.add(this._propertyType?.replace(/ /g, '_') + '--color');
     modeSwitcherContainer.classList.add('sidepanel__switcher');
 
     for (let entry of entries) {
@@ -333,9 +323,7 @@ export default class PropertyPanel {
     let headerSection = document.createElement('div');
     headerSection.classList.add('sidepanel__section');
     headerSection.classList.add('section--header');
-    headerSection.classList.add(
-      this._propertyType?.replace(/ /g, '_') + '--color',
-    );
+    headerSection.classList.add(this._propertyType?.replace(/ /g, '_') + '--color');
 
     let title = this._propertyType;
 
@@ -351,11 +339,7 @@ export default class PropertyPanel {
     let id = this._stepId;
 
     if (!id) {
-      if (
-        ['playbook', 'signature', 'execution_status'].includes(
-          this._propertyType,
-        )
-      ) {
+      if (['playbook', 'signature', 'execution_status'].includes(this._propertyType)) {
         //if the object is not a step, but is a playbook or a signature
         id = this._defaultValues['id'];
       }
@@ -417,10 +401,7 @@ export default class PropertyPanel {
    * @returns boolean
    */
   private isSpecificPropertiesEmpty(): boolean {
-    return (
-      this._schemaData.properties &&
-      !(Object.keys(this._schemaData.properties).length === 0)
-    );
+    return this._schemaData.properties && !(Object.keys(this._schemaData.properties).length === 0);
   }
 
   /**
@@ -437,10 +418,7 @@ export default class PropertyPanel {
     container: HTMLElement,
     defaultValues: any,
   ) {
-    if (
-      propertyName == 'created_by' &&
-      this._propertyType == 'extension-definition'
-    ) {
+    if (propertyName == 'created_by' && this._propertyType == 'extension-definition') {
       this.createLabeledInput(
         propertyName,
         propertyType,
@@ -452,12 +430,7 @@ export default class PropertyPanel {
         propertyName,
         propertyType,
         container,
-        new DropDownInput(
-          propertyName,
-          defaultValues[propertyName],
-          tlpv2_levels,
-          false,
-        ),
+        new DropDownInput(propertyName, defaultValues[propertyName], tlpv2_levels, false),
       );
     } else if (propertyName == 'revoked') {
       this.createLabeledInput(
@@ -467,19 +440,9 @@ export default class PropertyPanel {
         new CheckboxInput(propertyName, defaultValues[propertyName], true),
       );
     } else if (this._propertyType == 'playbook-processing-summary') {
-      let select = new DropDownInput(
-        propertyName,
-        defaultValues[propertyName],
-        ['true', 'false'],
-      );
+      let select = new DropDownInput(propertyName, defaultValues[propertyName], ['true', 'false']);
       select.setCSSClass('container--shorted');
-      this.createLabeledInput(
-        propertyName,
-        propertyType,
-        container,
-        select,
-        'property--reversed',
-      );
+      this.createLabeledInput(propertyName, propertyType, container, select, 'property--reversed');
     } else if (propertyName == 'schema') {
       this.createLabeledInput(
         propertyName,
@@ -488,8 +451,7 @@ export default class PropertyPanel {
         new TextAreaInput(propertyName, defaultValues[propertyName]),
       );
     } else if (propertyName == 'in_args' || propertyName == 'out_args') {
-      let variable_list =
-        this._playbookHandler.getAllPropertyIdentifier('playbook_variables');
+      let variable_list = this._playbookHandler.getAllPropertyIdentifier('playbook_variables');
       if (this._stepId) {
         variable_list.push(...Object.keys(defaultValues['step_variables']));
       }
@@ -506,31 +468,29 @@ export default class PropertyPanel {
       this._elements.push(complexInput);
     } else if (propertyName == 'command') {
       let labeledInput = new LabeledInput(propertyName, container);
-      let commandInput = new CommandInput(
-        propertyName,
-        defaultValues[propertyName],
-      );
+      let commandInput = new CommandInput(propertyName, defaultValues[propertyName]);
       commandInput.setIsBase64(false);
       commandInput.setLambda((dis: boolean) => {
         const commandBase64Exists = this._elements.find(obj =>
           (obj as any)._propertyName.includes('command_b64'),
         ) as any;
-        if (commandBase64Exists) {
+        const contentBase64Exists = this._elements.find(obj =>
+          (obj as any)._propertyName.includes('content_b64'),
+        ) as any;
+        if (commandBase64Exists && !contentBase64Exists) {
           commandBase64Exists._basicInput.setDisabled(dis);
         }
       });
 
       labeledInput.setBasicInput(commandInput);
       this._elements.push(labeledInput);
-    } else if (propertyName == 'command_b64') {
+    } else if (propertyName == 'command_b64' || propertyName == 'content_b64') {
       let labeledInput = new LabeledInput(propertyName, container);
       labeledInput.addClass('label__b64');
-      let commandInput = new CommandInput(
-        propertyName,
-        defaultValues[propertyName],
-      );
+      let commandInput = new CommandInput(propertyName, defaultValues[propertyName]);
       commandInput.setIsBase64(true);
       commandInput.setLambda((dis: boolean) => {
+        if (propertyName == 'content_b64') return;
         const commandExists = this._elements.find(
           obj => (obj as any)._propertyName == 'command',
         ) as any;
@@ -552,6 +512,17 @@ export default class PropertyPanel {
       );
       complexInput.setDefaultValues(defaultValues[propertyName]);
       this._elements.push(complexInput);
+    } else if (propertyName == 'related_to') {
+      let complexInput = new ListOfString(
+        propertyName,
+        propertyType,
+        container,
+        (name: string, value: boolean) => {
+          this.setDisplayed(name, value);
+        },
+      );
+      complexInput.setDefaultValues(defaultValues[propertyName]);
+      this._elements.push(complexInput);
     } else if (propertyName == 'agent') {
       this.createLabeledInput(
         propertyName,
@@ -563,10 +534,7 @@ export default class PropertyPanel {
           this._playbookHandler,
           'agent-target',
           () => {
-            this._playbookHandler.setPlaybookProperties(
-              this.submit(),
-              this._stepId,
-            );
+            this._playbookHandler.setPlaybookProperties(this.submit(), this._stepId);
             this._notifyFunction();
           },
         ),
@@ -579,10 +547,7 @@ export default class PropertyPanel {
         this._playbookHandler,
         () => {
           this.reloadProperties(this._isAgentTarget, this._propertyType);
-          this._playbookHandler.setPlaybookProperties(
-            this.submit(),
-            this._stepId,
-          );
+          this._playbookHandler.setPlaybookProperties(this.submit(), this._stepId);
           this._notifyFunction();
         },
         (name: string, value: boolean) => {
@@ -714,12 +679,20 @@ export default class PropertyPanel {
         propertyName,
         propertyType,
         container,
-        new DropDownInput(
-          propertyName,
-          defaultValues[propertyName],
-          identifierList,
-        ),
+        new DropDownInput(propertyName, defaultValues[propertyName], identifierList),
       );
+    } else if (propertyName === 'headers') {
+      // Handles http headers property in OpenC2 and http-api commands
+      let complexInput = new ListOfHeaders(
+        propertyName,
+        propertyType,
+        container,
+        (name: string, value: boolean) => {
+          this.setDisplayed(name, value);
+        },
+      );
+      complexInput.setDefaultValues(defaultValues[propertyName]);
+      this._elements.push(complexInput);
     } else if (propertyName.includes('_definitions')) {
       // Handles definition properties
       let complexInput = new DictionaryDefinition(
@@ -774,9 +747,7 @@ export default class PropertyPanel {
     defaultValues: any,
   ) {
     if (propertyType == 'agents-display') {
-      let agentTargetList = this._playbookHandler.getAllPropertyDict(
-        identifierReferences['agent'],
-      );
+      let agentTargetList = this._playbookHandler.getAllPropertyDict(identifierReferences['agent']);
       let complexInput = new ListOfAgent(
         propertyName,
         propertyType,
@@ -786,10 +757,7 @@ export default class PropertyPanel {
       );
       complexInput.setDefaultValues(defaultValues);
       complexInput.setReloadCallback(() => {
-        this.reloadClearedDifferentProperties(
-          'agents-display',
-          this.submit()['agents-display'],
-        );
+        this.reloadClearedDifferentProperties('agents-display', this.submit()['agents-display']);
       });
       complexInput.setClearFunction(() => {
         this.reloadClearedDifferentProperties('agents-display', {});
@@ -956,9 +924,7 @@ export default class PropertyPanel {
         },
       );
       complexInput.setOptions(identifierList);
-      complexInput.setDefaultValues(
-        defaultValues[propertyName] ? defaultValues[propertyName] : {},
-      );
+      complexInput.setDefaultValues(defaultValues[propertyName] ? defaultValues[propertyName] : {});
       this._elements.push(complexInput);
     } else if (
       typeof propertyType === 'string' &&
@@ -993,10 +959,7 @@ export default class PropertyPanel {
       );
       complexInput.setDefaultValues(defaultValues[propertyName]);
       this._elements.push(complexInput);
-    } else if (
-      typeof propertyType === 'object' &&
-      Object.values(propertyType)[0] == 'variable'
-    ) {
+    } else if (typeof propertyType === 'object' && Object.values(propertyType)[0] == 'variable') {
       // Handles step_variable and playbook_variables
       let complexInput = new DictionaryVariable(
         propertyName,
@@ -1079,43 +1042,16 @@ export default class PropertyPanel {
     defaultValues: any,
   ) {
     if (this._isExtension) {
-      this.handleInputFromType(
-        propertyName,
-        propertyType,
-        container,
-        defaultValues,
-      );
+      this.handleInputFromType(propertyName, propertyType, container, defaultValues);
     } else if (this._isStatus) {
       if (
-        !this.handleStatusInputFromName(
-          propertyName,
-          propertyType,
-          container,
-          this._defaultValues,
-        )
+        !this.handleStatusInputFromName(propertyName, propertyType, container, this._defaultValues)
       ) {
-        this.handleInputFromType(
-          propertyName,
-          propertyType,
-          container,
-          defaultValues,
-        );
+        this.handleInputFromType(propertyName, propertyType, container, defaultValues);
       }
     } else {
-      if (
-        !this.handleInputFromName(
-          propertyName,
-          propertyType,
-          container,
-          defaultValues,
-        )
-      ) {
-        this.handleInputFromType(
-          propertyName,
-          propertyType,
-          container,
-          defaultValues,
-        );
+      if (!this.handleInputFromName(propertyName, propertyType, container, defaultValues)) {
+        this.handleInputFromType(propertyName, propertyType, container, defaultValues);
       }
     }
   }
@@ -1133,10 +1069,7 @@ export default class PropertyPanel {
     } else if (propertyName == 'command_b64') {
       let labeledInput = new LabeledInput(propertyName, container);
       labeledInput.addClass('label__b64');
-      let commandInput = new CommandInput(
-        propertyName,
-        defaultValues[propertyName],
-      );
+      let commandInput = new CommandInput(propertyName, defaultValues[propertyName]);
       commandInput.setIsBase64(true);
       labeledInput.setBasicInput(commandInput);
       this._elements.push(labeledInput);
@@ -1185,12 +1118,7 @@ export default class PropertyPanel {
         propertyName,
         propertyType,
         container,
-        new DropDownInput(
-          propertyName,
-          defaultValues[propertyName],
-          optionList,
-          false,
-        ),
+        new DropDownInput(propertyName, defaultValues[propertyName], optionList, false),
       );
     } else {
       return false;
@@ -1214,8 +1142,7 @@ export default class PropertyPanel {
     extraclass: string = '',
   ) {
     let description =
-      this._schemaData?.descriptions &&
-      this._schemaData.descriptions[propertyName]
+      this._schemaData?.descriptions && this._schemaData.descriptions[propertyName]
         ? this._schemaData.descriptions[propertyName]
         : '';
     let labeledInput = new LabeledInput(propertyName, container, description);
@@ -1249,10 +1176,8 @@ export default class PropertyPanel {
     this.addCommonProperties();
     this._propertiesParentContainer.appendChild(this._propertiesContainer);
     this._elements.sort((a, b) => {
-      const indexA =
-        a instanceof PanelInput ? orderInputList.indexOf(a._propertyName) : -1;
-      const indexB =
-        b instanceof PanelInput ? orderInputList.indexOf(b._propertyName) : -1;
+      const indexA = a instanceof PanelInput ? orderInputList.indexOf(a._propertyName) : -1;
+      const indexB = b instanceof PanelInput ? orderInputList.indexOf(b._propertyName) : -1;
 
       if (indexA === -1 && indexB === -1) {
         // Preserve the original order if both elements are not in listB
@@ -1274,23 +1199,15 @@ export default class PropertyPanel {
 
   addPropertyKey() {
     if (this._keyType == 'string' && this._propertyKey) {
-      let textInput = new TextFieldInput(
-        this._propertyKey,
-        this._keyValue ? this._keyValue : '',
-      );
+      let textInput = new TextFieldInput(this._propertyKey, this._keyValue ? this._keyValue : '');
       if (this._propertyKey == 'variable') {
         textInput.placeHolder = '__variable__';
       }
       let description =
-        this._schemaData?.descriptions &&
-        this._schemaData.descriptions[this._propertyKey]
+        this._schemaData?.descriptions && this._schemaData.descriptions[this._propertyKey]
           ? this._schemaData.descriptions[this._propertyKey]
           : '';
-      this._keyInput = new LabeledInput(
-        this._propertyKey,
-        this._propertiesContainer,
-        description,
-      );
+      this._keyInput = new LabeledInput(this._propertyKey, this._propertiesContainer, description);
       this._keyInput.setBasicInput(textInput);
       this._keyInput.setRequired(true);
     }
@@ -1301,26 +1218,14 @@ export default class PropertyPanel {
    */
   addDifferentProperties() {
     let props = document.createElement('div');
-    this.handleLabeledInput(
-      this._propertyType,
-      this._propertyType,
-      props,
-      this._defaultValues,
-    );
+    this.handleLabeledInput(this._propertyType, this._propertyType, props, this._defaultValues);
 
     let headerSection = document.createElement('div');
     headerSection.classList.add('sidepanel__section');
     headerSection.classList.add('section--header');
-    headerSection.classList.add(
-      this._propertyType?.replace(/ /g, '_') + '--color',
-    );
+    headerSection.classList.add(this._propertyType?.replace(/ /g, '_') + '--color');
 
-    let title = new TitleInput(
-      'title',
-      this._propertyType,
-      headerSection,
-      false,
-    );
+    let title = new TitleInput('title', this._propertyType, headerSection, false);
     title.addClass('header__title');
     title.addToContainer();
 
@@ -1355,18 +1260,12 @@ export default class PropertyPanel {
       }
       if (element instanceof PanelInput && !this._isSubPanel) {
         element.setUpdate(() => {
-          this._playbookHandler.setPlaybookProperties(
-            this.submit(),
-            this._stepId,
-          );
+          this._playbookHandler.setPlaybookProperties(this.submit(), this._stepId);
           this._notifyFunction();
         });
       }
       if (element instanceof ComplexInput) {
-        if (
-          this._schemaData.descriptions &&
-          this._schemaData.descriptions[element.name()]
-        ) {
+        if (this._schemaData.descriptions && this._schemaData.descriptions[element.name()]) {
           element.setDescription(this._schemaData.descriptions[element.name()]);
         }
       }
@@ -1402,8 +1301,7 @@ export default class PropertyPanel {
       this._container.classList.remove('sidepanel--open');
       this._container.classList.add('sidepanel--close');
     } else if (tagName === 'dialog') {
-      const dialogContainer: HTMLDialogElement = this
-        ._container as HTMLDialogElement;
+      const dialogContainer: HTMLDialogElement = this._container as HTMLDialogElement;
       dialogContainer.close();
     }
   }
@@ -1413,10 +1311,7 @@ export default class PropertyPanel {
    */
   cancel() {
     if (!this._isSubPanel) {
-      this._playbookHandler.setPlaybookProperties(
-        this._previousPanel,
-        this._stepId,
-      );
+      this._playbookHandler.setPlaybookProperties(this._previousPanel, this._stepId);
     }
     if (this.hasStatus()) {
       this._playbookHandler._executionStatus = this._previousStatus;
@@ -1451,8 +1346,7 @@ export default class PropertyPanel {
       this._playbookHandler.setPlaybookProperties(obj, this._stepId);
     }
     if (this.hasStatus() && this._stepId) {
-      (this._playbookHandler._executionStatus as any)[this._stepId] =
-        this._statusInput.submit();
+      (this._playbookHandler._executionStatus as any)[this._stepId] = this._statusInput.submit();
     }
     this.close();
   }
@@ -1509,9 +1403,7 @@ export default class PropertyPanel {
     } else {
       this._defaultValues = this.submit();
     }
-    this._elements = this._elements.filter(
-      element => element instanceof PanelButton,
-    );
+    this._elements = this._elements.filter(element => element instanceof PanelButton);
     this.addAllProperties();
     if (this.hasStatus()) {
       this.reloadStatus();
@@ -1529,9 +1421,7 @@ export default class PropertyPanel {
     this._schemaData = this.extractSchemaFromType(newPropertyType);
     this._container.innerHTML = '';
     this._defaultValues = {};
-    this._elements = this._elements.filter(
-      element => element instanceof PanelButton,
-    );
+    this._elements = this._elements.filter(element => element instanceof PanelButton);
     this.addAllProperties();
   }
 
@@ -1544,26 +1434,18 @@ export default class PropertyPanel {
     this._propertyType = newPropertyType;
     this._container.innerHTML = '';
     this._defaultValues = defaultValue;
-    this._elements = this._elements.filter(
-      element => element instanceof PanelButton,
-    );
+    this._elements = this._elements.filter(element => element instanceof PanelButton);
     this.addDifferentProperties();
   }
 
   private extractSchemaFromType(type: string): Schema {
     if (this._isAgentTarget) {
       return schemaDictWithoutCommands[type] != undefined
-        ? extractSchemaTypes(
-            schemaDictWithoutCommands[type],
-            schemaDictWithoutCommands,
-          )
+        ? extractSchemaTypes(schemaDictWithoutCommands[type], schemaDictWithoutCommands)
         : { required: [] };
     }
     return schemaDictWithoutAgentTarget[type] != undefined
-      ? extractSchemaTypes(
-          schemaDictWithoutAgentTarget[type],
-          schemaDictWithoutAgentTarget,
-        )
+      ? extractSchemaTypes(schemaDictWithoutAgentTarget[type], schemaDictWithoutAgentTarget)
       : { required: [] };
   }
 }

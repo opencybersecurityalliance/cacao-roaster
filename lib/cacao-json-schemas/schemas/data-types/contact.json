@@ -7,7 +7,6 @@
   "properties": {
     "email": {
       "type": "object",
-      "unevaluatedProperties": false,
       "patternProperties": {
         "^[a-zA-Z0-9_-]{0,250}$": {
           "type": "string"
@@ -17,7 +16,6 @@
     },
     "phone": {
       "type": "object",
-      "unevaluatedProperties": false,
       "patternProperties": {
         "^[a-zA-Z0-9_-]{0,250}$": {
           "type": "string"
@@ -29,6 +27,5 @@
       "type": "string",
       "description": "Additional contact information."
     }
-  },
-  "unevaluatedProperties": false
+  }
 }

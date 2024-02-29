@@ -53,6 +53,5 @@
       }
     }
   ],
-  "required": ["commands", "agent"],
-  "unevaluatedProperties": false
+  "required": ["commands", "agent"]
 }

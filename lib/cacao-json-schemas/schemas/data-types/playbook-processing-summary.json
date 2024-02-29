@@ -49,6 +49,5 @@
       "type": "boolean",
       "description": "See section 8."
     }
-  },
-  "unevaluatedProperties": false
+  }
 }

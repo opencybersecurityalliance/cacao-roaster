@@ -30,6 +30,5 @@
       "description": "An identifier that represents the data that this content is referring to. This property is especially useful when referencing content that already exists in a graph dataset or can be referenced via some ID. When referencing STIX content, this would be the STIX-based UUID."
     }
   },
-  "required": ["name"],
-  "unevaluatedProperties": false
+  "required": ["name"]
 }

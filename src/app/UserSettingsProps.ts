@@ -16,10 +16,12 @@ export default class UserSettingsProps {
 
   showDialog() {
     let dialog = document.createElement('dialog') as HTMLDialogElement;
-    dialog.className = 'usersettings__dialog';
+    dialog.className = 'dialog';
     dialog.addEventListener('keydown', function (event) {
       if (event.code.toLowerCase() === 'escape') {
-        event.preventDefault(); // Prevents the window from closing when pressing Escape
+        dialog.close();
+        dialog.remove();
+        document.body.classList.remove('blurred');
       }
     });
     document.body.appendChild(dialog);
