@@ -123,14 +123,14 @@ export default class CacaoWindow {
     // Creates the text area for the user to input the CACAO playbook
     let textArea = document.createElement('textarea') as HTMLTextAreaElement;
     textArea.classList.add('property__input', 'cacaoImportTextarea');
-    textArea.placeholder = 'Paste the CACAO playbook here.';
+    textArea.placeholder = 'Paste the CACAO JSON here.';
 
     // Creates radio-buttons input with 3 options: 'Import text', 'import base64 encoded', 'import STIX 2.1 COA Playbook json'
     let radioButtonContainer = document.createElement('div') as HTMLDivElement;
     radioButtonContainer.className = 'dialog__radioButtonContainer';
 
     // Radio button for importing text
-    let placeholderImportText = 'Paste the CACAO playbook here.';
+    let placeholderImportText = 'Paste the CACAO JSON here.';
     this.createImportRadioButton(
       radioButtonContainer,
       'CACAO JSON',
@@ -140,7 +140,7 @@ export default class CacaoWindow {
     dialog.appendChild(radioButtonContainer);
 
     // Radio button for importing base64 encoded playbook
-    let placeholderImportEncodedPlaybook = 'Paste base64 encoded CACAO Playbook.';
+    let placeholderImportEncodedPlaybook = 'Paste the base64 encoded CACAO Playbook here.';
     this.createImportRadioButton(
       radioButtonContainer,
       'base64 encoded CACAO Playbook',
@@ -246,7 +246,7 @@ export default class CacaoWindow {
     importTextRadio.value = textContent.trim();
     importTextRadio.textContent = textContent;
     importTextRadio.classList.add('radioButton');
-    if (textContent === 'From CACAO JSON') {
+    if (textContent === 'CACAO JSON') {
       importTextRadio.checked = true;
       // remove focus from the radio button
       importTextRadio.blur();
