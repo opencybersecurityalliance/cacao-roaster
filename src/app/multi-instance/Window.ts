@@ -133,7 +133,7 @@ export default class CacaoWindow {
     let placeholderImportText = 'Paste the CACAO playbook here.';
     this.createImportRadioButton(
       radioButtonContainer,
-      'From CACAO JSON',
+      'CACAO JSON',
       placeholderImportText,
       textArea,
     );
@@ -143,15 +143,11 @@ export default class CacaoWindow {
     let placeholderImportEncodedPlaybook = 'Paste base64 encoded CACAO Playbook.';
     this.createImportRadioButton(
       radioButtonContainer,
-      'From base64 encoded CACAO Playbook',
+      'base64 encoded CACAO Playbook',
       placeholderImportEncodedPlaybook,
       textArea,
     );
     dialog.appendChild(radioButtonContainer);
-
-    // // Radio button for importing STIX 2.1 COA Playbook json
-    // let placeholderImportSTIX = 'Paste STIX 2.1 COA Playbook json.';
-    // this.createImportRadioButton(radioButtonContainer, 'From STIX 2.1 COA Playbook', placeholderImportSTIX, textArea);
 
     // Adds the text area to the dialog
     let textAreaContainer = document.createElement('div') as HTMLDivElement;
