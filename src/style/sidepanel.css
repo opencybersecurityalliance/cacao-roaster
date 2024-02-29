@@ -458,7 +458,6 @@ button.container--simple:hover {
 }
 
 .list--expanded {
-  max-height: 160px;
   overflow: visible;
   display: flex;
   flex-direction: column;
