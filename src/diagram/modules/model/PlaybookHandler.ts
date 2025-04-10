@@ -920,6 +920,18 @@ export default class PlaybookHandler {
 	clearCoordinatesCache(): void {
 		PlaybookHandler._coordinatesCache = {};
 	}
+
+	/**
+	 * Triggers validation by firing a 'playbook.changed' event
+	 * Used to update the validation state after operations like export
+	 */
+	triggerValidation() {
+		const context: ContextPlaybookAttrs = {
+			action: 'update.metadata',
+			element: this._playbook as any,
+		};
+		this._eventBus.fire('playbook.changed', context);
+	}
 }
 
 PlaybookHandler.$inject = ['eventBus', 'config.playbook', 'config.executionStatus.json', 'elementRegistry'];

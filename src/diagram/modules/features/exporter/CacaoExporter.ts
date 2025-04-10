@@ -130,6 +130,9 @@ export default class CacaoExporter {
 				'application/json',
 			);
 		}
+
+		// Trigger validation to update the UI after export
+		this._playbookHandler.triggerValidation();
 	}
 
 	// Export the playbook as svg.
@@ -178,6 +181,9 @@ export default class CacaoExporter {
 
 		// Download the JSON file
 		this.downloadFile(JSON.stringify(stixPlaybook, null, 2), fileName, 'application/json');
+
+		// Trigger validation to update the UI after export
+		this._playbookHandler.triggerValidation();
 	}
 
 	// Creates a STIX 2.1 Course of Action object with the Playbook extension and attaches the relevant metadata and the whole CACAO playbook in base64 in the "playbook_base64" property.
