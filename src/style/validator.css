@@ -12,6 +12,7 @@
     border: solid 1px rgb(185, 188, 197);
     border-radius: 5px;
     justify-content: center;
+    background-color: white;
 }
 
 .validator-icon {
@@ -31,17 +32,31 @@
     background-image: url('../assets/icons/error.svg');
 }
 
+.validator-icon-warning {
+    background-image: url('../assets/icons/warning.svg');
+}
+
 .validator-correct {
-    background: #dbffd6 !important;
+    border-left: 4px solid #278811 !important;
     color: #278811 !important;
 }
 
 .validator-error {
-    background: #ffcbc8 !important;
-    color: #a50f0f !important;
+    border-left: 4px solid #e41e1e !important;
+    color: #e41e1e !important;
 
     &:hover {
-        background: #e6a8a5 !important;
+        background-color: #f9f1f1 !important;
+        cursor: pointer;
+    }
+}
+
+.validator-warning {
+    border-left: 4px solid #dea700 !important;
+    color: #dea700 !important;
+
+    &:hover {
+        background-color: #f9f7f1 !important;
         cursor: pointer;
     }
 }
@@ -60,11 +75,23 @@
 }
 
 .validator-dialog-error-container {
-    width: calc(100% - 20px);
+    width: 100%;
     margin: 0 0 20px 0;
     padding: 5px 10px;
-    background-color: rgb(231, 231, 231);
+    background-color: white;
     border-radius: 5px;
+    border-left: 5px solid #e41e1e;
+    box-sizing: border-box;
+}
+
+.validator-dialog-warning-container {
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 5px 10px;
+    background-color: white;
+    border-radius: 5px;
+    border-left: 5px solid #dea700;
+    box-sizing: border-box;
 }
 
 .validator-dialog-error-title {
@@ -83,4 +110,26 @@
 .validator-dialog-error-message {
     font-size: 12px;
     font-weight: 300;
+}
+
+.validator-dialog-timestamp-message {
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 10px;
+    font-style: italic;
+    position: relative;
+    padding-left: 25px;
+}
+
+.validator-dialog-timestamp-message::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    background-image: url('../assets/icons/warning.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
